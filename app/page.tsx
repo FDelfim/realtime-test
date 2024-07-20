@@ -22,7 +22,7 @@ interface Message {
 export default function Home() {
 
   const user = useRef<HTMLSpanElement>(null);
-  const queryMessages = query(messagesCollection, orderBy('createdAt'), limit(25));
+  const queryMessages = query(messagesCollection, orderBy('createdAt', 'desc'), limit(25));
   const [messages] = useCollectionData(queryMessages);
   const [formValue, setFormValue] = useState('');
   const uid = '';
