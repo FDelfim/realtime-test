@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { db } from "../db/firebase";
 import { collection, limit, orderBy, query, addDoc, Timestamp } from "firebase/firestore";
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -27,13 +27,26 @@ export default function Home() {
   const [formValue, setFormValue] = useState('');
   const uid = '';
   const photoURL = '';
+  const userName = '';
+  const lastMessage = useRef<HTMLElement>(null);
 
+  setTimeout(() => {
+    lastMessage.current?.scrollIntoView({ behavior: 'smooth' });
+  }, 1000);
+  
   return (
     <main className="min-h-[500px]">
       <Navbar></Navbar>
       <div className="p-8">
-        <div className=" overflow-y-scroll max-h-[80vh]">
-          {messages && messages.map(msg => <Message message={msg as Message}></Message>)}
+        <div className="pb-24">
+          {messages && messages.map((msg, key) => {
+            return (
+              <span key={key}>
+                <Message message={msg as Message}></Message>
+                {key === 0 && <span ref={lastMessage}></span>}
+              </span>
+            )
+          }).reverse()}
           <span ref={user}></span>
         </div>
       </div>
@@ -44,6 +57,7 @@ export default function Home() {
         user={user}
         uid={uid}
         photoURL={photoURL}
+        userName={userName}
       ></MessageSender>
     </main>
   );
