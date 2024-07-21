@@ -1,7 +1,7 @@
 export const userNames = [
     {
         name: 'Pato Otário',
-        color: 'red'
+        color: '#00ff'
     },
     {
         name: 'Leão Mané',
@@ -9,11 +9,11 @@ export const userNames = [
     },
     {
         name: 'Cobra Cega',
-        color: 'green'
+        color: '#f10a00'
     },
     {
         name: 'Gato Mestre',
-        color: 'yellow'
+        color: '#0fa023'
     },
     {
         name: 'Macaco Louco',
@@ -25,7 +25,7 @@ export const userNames = [
     },
     {
         name: 'Cachorro Doido',
-        color: 'pink'
+        color: '#0f0fa2'
     },
     {
         name: 'Papagaio Malandro',
@@ -37,7 +37,7 @@ export const userNames = [
     },
     {
         name: 'Pomba Esperta',
-        color: 'white'
+        color: '#dd000f'
     },
     {
         name: undefined,
