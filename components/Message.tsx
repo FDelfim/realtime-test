@@ -7,12 +7,12 @@ interface MessageProps {
   uid: string,
   userName: string,
   photoURL: string,
-  createdAt: Timestamp
+  createdAt: Timestamp | string
 }
 
 export default function Message(props: any) {
   const message: MessageProps = props.message;
-  const formattedDate = message.createdAt ? new Date(message.createdAt.toDate()).toLocaleString('pt-BR') : '';
+  const formattedDate = message.createdAt instanceof Timestamp ? new Date(message.createdAt.toDate()).toLocaleString('pt-BR') : new Date(message.createdAt).toLocaleString('pt-BR');
 
   return (
     <div className='lg:w-1/2 md:w-3/4 w-full bg-slate-100 my-2 p-2 text-black rounded-lg border transition duration-300 ease-in-out transform hover:scale-[101%]'>

@@ -6,7 +6,6 @@ import { useCollectionData } from 'react-firebase-hooks/firestore';
 import 'firebase/compat/firestore';
 import Message from "../components/Message";
 import MessageSender from "@/components/MessageSender";
-import Navbar from "@/components/Navbar";
 
 const messagesCollection = collection(db, 'messages');
 
@@ -36,7 +35,6 @@ export default function Home() {
   
   return (
     <main className="min-h-[500px]">
-      <Navbar></Navbar>
       <div className="p-8">
         <div className="pb-24">
           {messages && messages.map((msg, key) => {
