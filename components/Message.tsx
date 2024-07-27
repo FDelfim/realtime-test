@@ -20,7 +20,7 @@ export default function Message(props: any) {
       <p className='text-lg break-words'>
         {message.text}
       </p>
-      <small className='text-gray-400 flex lg:w-full lg:justify-end text-xs'>{formattedDate}</small>
+      <small className='text-gray-400 flex w-full justify-end text-xs mt-2'>{formattedDate}</small>
     </div>
   )
 }
