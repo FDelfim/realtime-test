@@ -1,4 +1,4 @@
-import React, { FormEvent, useState, useRef } from 'react';
+import React, { FormEvent } from 'react';
 import firebase from 'firebase/compat/app';
 import { addDoc } from "firebase/firestore";
 import { userNames } from "@/utils/names";

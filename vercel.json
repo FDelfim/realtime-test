@@ -1,0 +1,9 @@
+{
+    "crons": [
+      {
+        "path": "/api/dayliAIMessage",
+        "schedule": "0 18 */2 * *"
+      }
+    ]
+  }
+  
