@@ -10,7 +10,7 @@ const messagesCollection = collection(db, 'messages');
 import { serverTimestamp } from "firebase/firestore";
 
 export async function POST() {
-  const response = await fetch("http://localhost:3000/api/generate", {
+  const response = await fetch("https://realtime-chat-test.vercel.app/api/generate", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
