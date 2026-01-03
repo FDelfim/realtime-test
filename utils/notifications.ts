@@ -21,13 +21,40 @@ export const requestNotificationPermission = async (): Promise<boolean> => {
 export const registerServiceWorker = async (): Promise<ServiceWorkerRegistration | null> => {
   if ('serviceWorker' in navigator) {
     try {
+      console.log('🔧 Registrando Service Worker...');
+      
+      // Registrar o service worker
       const registration = await navigator.serviceWorker.register('/sw-custom.js', {
-        scope: '/'
+        scope: '/',
+        updateViaCache: 'none'
       });
-      console.log('Service Worker registrado com sucesso:', registration);
+      
+      console.log('✅ Service Worker registrado:', registration);
+      
+      // Forçar atualização
+      await registration.update();
+      
+      // Se houver um SW esperando, ativá-lo imediatamente
+      if (registration.waiting) {
+        console.log('⚡ Ativando Service Worker que estava esperando...');
+        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+      }
+      
+      // Aguardar estar pronto
+      await navigator.serviceWorker.ready;
+      console.log('✅ Service Worker pronto');
+      
+      // Verificar se está ativo
+      const activeReg = await navigator.serviceWorker.ready;
+      if (activeReg.active) {
+        console.log('✅ Service Worker ATIVO confirmado');
+      } else {
+        console.warn('⚠️ Service Worker registrado mas NÃO está ativo');
+      }
+      
       return registration;
     } catch (error) {
-      console.error('Erro ao registrar Service Worker:', error);
+      console.error('❌ Erro ao registrar Service Worker:', error);
       return null;
     }
   }

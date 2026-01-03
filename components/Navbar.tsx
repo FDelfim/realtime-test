@@ -10,9 +10,7 @@ export default function Navbar() {
             <Image className='rounded-lg' src="/icons/icon-512x512.png" alt="Logo" width={28} height={28} />
             <h1 className="text-white text-lg sm:text-2xl font-bold uppercase">Chat dos otário</h1>
           </div>
-          <div className='flex gap-2 items-center'>
-            <NotificationButton />
-          </div>
+          <NotificationButton />
         </div>
       </nav>
   )

@@ -48,13 +48,25 @@ export default function NotificationButton({ onPermissionChange }: NotificationB
     
     if (granted) {
       onPermissionChange?.(true);
-      // Mostrar notificação de teste
-      if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-        navigator.serviceWorker.controller.postMessage({
-          type: 'SHOW_NOTIFICATION',
-          title: '🎉 Notificações Ativadas!',
-          body: 'Você receberá notificações de novas mensagens',
-          userName: 'Sistema'
+      console.log('🔔 Tentando mostrar notificação de teste...');
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.ready.then((registration) => {
+          if (registration.active) {
+            console.log('SW pronto, enviando notificação de teste');
+            try {
+              registration.active.postMessage({
+                type: 'SHOW_NOTIFICATION',
+                title: '🎉 Notificações Ativadas!',
+                body: 'Você receberá notificações de novas mensagens',
+                userName: 'Sistema',
+                isHidden: true // Forçar exibição
+              });
+            } catch (error) {
+              console.error('Erro ao enviar notificação de teste:', error);
+            }
+          }
+        }).catch((error) => {
+          console.error('Erro ao obter SW:', error);
         });
       }
     } else {
