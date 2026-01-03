@@ -15,12 +15,14 @@ export default function Message(props: any) {
   const formattedDate = message.createdAt ? new Date(message.createdAt.toDate()).toLocaleString('pt-BR') : '';
 
   return (
-    <div className='lg:w-1/2 md:w-3/4 w-full bg-slate-100 my-2 p-2 text-black rounded-lg border transition duration-300 ease-in-out transform hover:scale-[101%]'>
-      <p className='font-bold uppercase text-m' style={{ color: userNames.find(user => user.name === message.userName)?.color }}>{message.userName ?? 'Desconhecido'}</p>
-      <p className='text-lg break-words'>
+    <div className='w-full sm:w-11/12 md:w-3/4 lg:w-2/3 xl:w-1/2 bg-white my-2 p-3 sm:p-4 text-gray-900 rounded-2xl shadow-md border border-gray-200 transition-all duration-200 hover:shadow-lg hover:scale-[101%]'>
+      <p className='font-bold uppercase text-sm sm:text-base mb-1' style={{ color: userNames.find(user => user.name === message.userName)?.color }}>
+        {message.userName ?? 'Desconhecido'}
+      </p>
+      <p className='text-base sm:text-lg break-words leading-relaxed'>
         {message.text}
       </p>
-      <small className='text-gray-400 flex w-full justify-end text-xs mt-2'>{formattedDate}</small>
+      <small className='text-gray-500 flex w-full justify-end text-xs mt-2'>{formattedDate}</small>
     </div>
   )
 }
